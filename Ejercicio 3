@@ -1,0 +1,45 @@
+#include <iostream>
+#include <iomanip> 
+
+using namespace std;
+
+int main() {
+    float nota;
+
+    
+    cout << "       SISTEMA DE CALIFICACIONES        " << endl;
+   
+
+    
+    cout << "Ingrese la nota del estudiante (0.0 a 5.0): ";
+    cin >> nota;
+
+    
+    if (nota >= 0 && nota <= 5) {
+        
+        
+        if (nota >= 4.6) {
+            cout << "\nRESULTADO: Excelente" << endl;
+            cout << "Felicidades, el desempeño es sobresaliente." << endl;
+        } 
+        else {
+            
+            if (nota >= 3.0) {
+                cout << "\nRESULTADO: Aprueba" << endl;
+                cout << "Has cumplido con los objetivos minimos." << endl;
+            } 
+            else {
+                cout << "\nRESULTADO: Reprueba" << endl;
+                cout << "Es necesario reforzar los conocimientos." << endl;
+            }
+        }
+    } 
+    else {
+        
+        cout << "\n[ERROR]: La nota " << nota << " no es valida." << endl;
+        cout << "Por favor, ingrese un valor entre 0 y 5." << endl;
+    }
+
+    cout << "========================================" << endl;
+    return 0;
+}
