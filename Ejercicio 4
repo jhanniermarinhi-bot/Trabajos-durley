@@ -1,0 +1,53 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int N;
+    
+    
+    cout << "       ANALIZADOR DE NUMEROS (N)        " << endl;
+    
+
+    
+    cout << "Ingrese un numero entero positivo: ";
+    cin >> N;
+
+    if (N < 1) {
+        cout << "Por favor, ingrese un numero mayor a 0." << endl;
+        return 1; 
+    }
+
+    
+    cout << "\n1. TABLA DE MULTIPLICAR DE " << N << ":" << endl;
+    for (int i = 1; i <= 10; i++) {
+        cout << "   " << N << " x " << i << " = " << (N * i) << endl;
+    }
+
+    
+    int suma = 0;
+    int contador = 1;
+    while (contador <= N) {
+        suma += contador; 
+        contador++;
+    }
+    cout << "\n2. SUMA ACUMULADA (1 hasta " << N << "): " << suma << endl;
+
+    
+    int divisores = 0;
+    for (int i = 1; i <= N; i++) {
+        if (N % i == 0) {
+            divisores++;
+        }
+    }
+
+    cout << "3. RESULTADO DE PRIMO: ";
+    if (divisores == 2) {
+        cout << N << " ES un numero primo." << endl;
+    } else {
+        cout << N << " NO es un numero primo." << endl;
+    }
+
+    cout << "========================================" << endl;
+    return 0;
+}
