@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    double numero1, numero2;
+    
+    
+    cout << " CALCULADORA DE OPERACIONES " << endl;
+    cout << "Ingrese el primer número: ";
+    cin >> numero1;
+    
+    cout << "Ingrese el segundo número: ";
+    cin >> numero2;
+    
+    cout << "\n RESULTADOS " << endl;
+    
+    // OPERACIONES ARITMÉTICAS
+    cout << "\nOperaciones Aritméticas:" << endl;
+    cout << numero1 << " + " << numero2 << " = " << (numero1 + numero2) << endl;
+    cout << numero1 << " - " << numero2 << " = " << (numero1 - numero2) << endl;
+    cout << numero1 << " * " << numero2 << " = " << (numero1 * numero2) << endl;
+    
+    
+    cout << "\nDivisión:" << endl;
+    if (numero2 != 0) {
+        cout << numero1 << " / " << numero2 << " = " << (numero1 / numero2) << endl;
+    } else {
+        cout << "¡ERROR! No se puede dividir entre cero." << endl;
+    }
+    
+    
+    cout << "\n--- COMPARACIÓN (Operadores Relacionales) ---" << endl;
+    
+    if (numero1 > numero2) {
+        cout << numero1 << " es MAYOR que " << numero2 << endl;
+    } else if (numero1 < numero2) {
+        cout << numero2 << " es MAYOR que " << numero1 << endl;
+    } else {
+        cout << numero1 << " es IGUAL a " << numero2 << endl;
+    }
+    
+
+    cout << "\nDetalles de comparaciones:" << endl;
+    cout << numero1 << " > " << numero2 << " : " << (numero1 > numero2 ? "verdadero" : "falso") << endl;
+    cout << numero1 << " < " << numero2 << " : " << (numero1 < numero2 ? "verdadero" : "falso") << endl;
+    cout << numero1 << " == " << numero2 << " : " << (numero1 == numero2 ? "verdadero" : "falso") << endl;
+    cout << numero1 << " >= " << numero2 << " : " << (numero1 >= numero2 ? "verdadero" : "falso") << endl;
+    cout << numero1 << " <= " << numero2 << " : " << (numero1 <= numero2 ? "verdadero" : "falso") << endl;
+    cout << numero1 << " != " << numero2 << " : " << (numero1 != numero2 ? "verdadero" : "falso") << endl;
+    
+    return 0;
+}
