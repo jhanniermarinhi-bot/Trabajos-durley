@@ -1,0 +1,99 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+  
+    cout << "     PROGRAMA EDUCATIVO: TIPOS DE LENGUAJES\n";
+   
+    
+    cout << "1. ¿QUE ES UN LENGUAJE COMPILADO?\n";
+    
+    cout << "Un lenguaje compilado es aquel en el que el codigo\n";
+    cout << "fuente se traduce completamente a codigo de maquina\n";
+    cout << "ANTES de ejecutarse, mediante un programa llamado\n";
+    cout << "compilador. Ejemplo: C, C++, Java (a bytecode).\n";
+    cout << "\nCaracteristicas:\n";
+    cout << "  - Mas rapido en ejecucion\n";
+    cout << "  - Requiere compilacion previa\n";
+    cout << "  - Detecta errores antes de ejecutar\n";
+    cout << "\n";
+
+    
+    cout << "2. ¿QUE ES UN LENGUAJE INTERPRETADO?\n";
+   
+    cout << "Un lenguaje interpretado es aquel en el que el codigo\n";
+    cout << "fuente se traduce y ejecuta linea por linea DURANTE\n";
+    cout << "la ejecucion, mediante un programa llamado intérprete.\n";
+    cout << "Ejemplo: Python, JavaScript, PHP.\n";
+    cout << "\nCaracteristicas:\n";
+    cout << "  - Mas lento en ejecucion\n";
+    cout << "  - No requiere compilacion previa\n";
+    cout << "  - Los errores se detectan durante la ejecucion\n";
+    cout << "\n";
+
+    
+    cout << "3. ¿A QUE TIPO PERTENECE C++?\n";
+    
+    cout << "C++ es un LENGUAJE COMPILADO.\n";
+    cout << "\nExplicacion:\n";
+    cout << "  - El codigo C++ se compila a codigo de maquina\n";
+    cout << "  - Se ejecuta directamente sin intermediarios\n";
+    cout << "  - Ofrece alto rendimiento y control de recursos\n";
+    cout << "  - Es muy eficiente para aplicaciones criticas\n";
+    cout << "\n";
+
+    
+    
+    cout << "SELECCIONE UN PARADIGMA DE PROGRAMACION\n";
+    
+    cout << "\nOpciones disponibles:\n";
+    cout << "1. Programacion Estructurada\n";
+    cout << "2. Programacion Orientada a Objetos\n";
+    cout << "\nIngrese su opcion (1 o 2): ";
+
+    int opcion;
+    cin >> opcion;
+    cout << "\n";
+
+    
+    if (opcion == 1) {
+        cout << "PROGRAMACION ESTRUCTURADA\n";
+       
+        cout << "Es un paradigma que organiza el programa en:\n";
+        cout << "  - Funciones\n";
+        cout << "  - Estructuras de control (if, while, for)\n";
+        cout << "  - Variables globales y locales\n";
+        cout << "\nCaracteristicas:\n";
+        cout << "  - Codigo secuencial y modular\n";
+        cout << "  - Facil de entender y mantener en proyectos pequeños\n";
+        cout << "  - Los datos y funciones estan separados\n";
+        cout << "  - Ejemplo: C, Pascal, BASIC\n";
+
+    } else if (opcion == 2) {
+        cout << "PROGRAMACION ORIENTADA A OBJETOS (POO)\n";
+        
+        cout << "Es un paradigma basado en objetos que contienen:\n";
+        cout << "  - Atributos (datos)\n";
+        cout << "  - Metodos (funciones)\n";
+        cout << "  - Herencia\n";
+        cout << "  - Polimorfismo\n";
+        cout << "\nCaracteristicas:\n";
+        cout << "  - Reutiliza codigo mediante herencia\n";
+        cout << "  - Facilita la mantenibilidad en proyectos grandes\n";
+        cout << "  - Los datos y metodos estan juntos\n";
+        cout << "  - Ejemplo: C++, Java, Python, C#\n";
+
+    } else {
+        cout << "ERROR: Opcion invalida. Por favor, ingrese 1 o 2.\n";
+    }
+
+    cout << "\n";
+   
+    cout << "         FIN DEL PROGRAMA\n";
+   
+    cout << "\n";
+
+    return 0;
+}
