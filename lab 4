@@ -1,0 +1,68 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+const int MAX = 100;
+
+struct Estudiante {
+    string nombre;
+    int matricula;
+    float nota1, nota2, nota3;
+};
+
+
+void registrar(Estudiante estudiante[], int &n)
+{
+    if (n>=MAX)
+    {
+      cout << "Limite alcanzado.\n"; 
+      return;
+    }
+    
+    cout <<"Nombre:";
+    cin >>estudiantes[n].nombre;
+    cout <<"Matricula:";
+    cin >>estudiantes[n].matricula;
+    cout <<"Calificacion 1:";
+    cin >>estudiantes[n].nota1;
+    cout <<"Calificacion 2:";
+    cin >>estudiantes[n].nota2;
+    cout <<"Calificacion 3:";
+    cin >>estudiantes[n].nota3;
+    n++;
+}
+float promedio(Estudiante e)
+{
+    return (e.nota1+e.nota2+e.nota3)/3.0;
+}
+void mostrar (Estudiante estudiantes[],int n)
+{
+    for (int =0;i<=n; i++)
+    {
+        cout <<"Nombre:" estudiantes[i].nombre<<"Promedio: "<<promedio(estudiantes[i])<<endl;
+    }
+}
+void mejorPromedio (Estudiante estudiantes [],int n)
+{
+    if (n ==0)
+    return;
+    int pos=0;
+    for (int i=1; i<n;i++)
+    {
+        if (promedio(estudiantes[i])> promedio (estudiantes[pos]))
+        {
+            pos=i;
+        }
+    }
+}
+cout <<"Mejor estudiante: "<< estudiantes[pos].nombre<<"Promedio: " << promedio(estudiantes[pos]) << endl;
+
+
+
+
+    
+   
+
+    return 0;
+}
+}
