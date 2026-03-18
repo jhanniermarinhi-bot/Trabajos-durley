@@ -1,0 +1,104 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+// 1. Uso de constantes para tamaño máximo
+const int MAX = 10;
+
+// Prototipos de funciones
+void leerMatriz(int mat[MAX][MAX], int filas, int cols, char nombre);
+void mostrarMatriz(int mat[MAX][MAX], int filas, int cols);
+void sumarMatrices(int a[MAX][MAX], int b[MAX][MAX], int r[MAX][MAX], int f, int c);
+void multiplicarMatrices(int a[MAX][MAX], int b[MAX][MAX], int r[MAX][MAX], int f1, int c1, int c2);
+void transponerMatriz(int mat[MAX][MAX], int res[MAX][MAX], int f, int c);
+
+int main() {
+    int matA[MAX][MAX], matB[MAX][MAX], resultado[MAX][MAX];
+    int f1, c1, f2, c2;
+
+    cout << "--- Sistema de Operaciones con Matrices ---" << endl;
+
+    // Ingreso de dimensiones
+    cout << "Dimensiones Matriz A (filas columnas): "; cin >> f1 >> c1;
+    cout << "Dimensiones Matriz B (filas columnas): "; cin >> f2 >> c2;
+
+    // Validación de límites
+    if (f1 > MAX || c1 > MAX || f2 > MAX || c2 > MAX) {
+        cout << "Error: El tamaño máximo permitido es " << MAX << endl;
+        return 1;
+    }
+
+    leerMatriz(matA, f1, c1, 'A');
+    leerMatriz(matB, f2, c2, 'B');
+
+    // --- Operación: Suma ---
+    cout << "\n1. SUMA (A + B):" << endl;
+    if (f1 == f2 && c1 == c2) {
+        sumarMatrices(matA, matB, resultado, f1, c1);
+        mostrarMatriz(resultado, f1, c1);
+    } else {
+        cout << "Incompatible: Las dimensiones deben ser iguales." << endl;
+    }
+
+    // --- Operación: Multiplicación ---
+    cout << "\n2. MULTIPLICACION (A * B):" << endl;
+    if (c1 == f2) {
+        multiplicarMatrices(matA, matB, resultado, f1, c1, c2);
+        mostrarMatriz(resultado, f1, c2);
+    } else {
+        cout << "Incompatible: Columnas de A deben coincidir con Filas de B." << endl;
+    }
+
+    // --- Operación: Transpuesta ---
+    cout << "\n3. TRANSPUESTA DE A:" << endl;
+    transponerMatriz(matA, resultado, f1, c1);
+    mostrarMatriz(resultado, c1, f1);
+
+    return 0;
+}
+
+// --- Implementación de Funciones ---
+
+void leerMatriz(int mat[MAX][MAX], int filas, int cols, char nombre) {
+    cout << "Ingrese datos de Matriz " << nombre << ":" << endl;
+    for (int i = 0; i < filas; i++) {
+        for (int j = 0; j < cols; j++) {
+            cout << nombre << "[" << i << "][" << j << "]: ";
+            cin >> mat[i][j];
+        }
+    }
+}
+
+void mostrarMatriz(int mat[MAX][MAX], int filas, int cols) {
+    for (int i = 0; i < filas; i++) {
+        cout << "| ";
+        for (int j = 0; j < cols; j++) {
+            cout << setw(4) << mat[i][j] << " ";
+        }
+        cout << " |" << endl;
+    }
+}
+
+void sumarMatrices(int a[MAX][MAX], int b[MAX][MAX], int r[MAX][MAX], int f, int c) {
+    for (int i = 0; i < f; i++)
+        for (int j = 0; j < c; j++)
+            r[i][j] = a[i][j] + b[i][j];
+}
+
+void multiplicarMatrices(int a[MAX][MAX], int b[MAX][MAX], int r[MAX][MAX], int f1, int c1, int c2) {
+    for (int i = 0; i < f1; i++) {
+        for (int j = 0; j < c2; j++) {
+            r[i][j] = 0; // Inicializar celda
+            for (int k = 0; k < c1; k++) {
+                r[i][j] += a[i][k] * b[k][j];
+            }
+        }
+    }
+}
+
+void transponerMatriz(int mat[MAX][MAX], int res[MAX][MAX], int f, int c) {
+    for (int i = 0; i < f; i++)
+        for (int j = 0; j < c; j++)
+            res[j][i] = mat[i][j];
+}
