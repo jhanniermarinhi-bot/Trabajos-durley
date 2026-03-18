@@ -3,10 +3,10 @@
 
 using namespace std;
 
-// 1. Uso de constantes para tamaño máximo
+
 const int MAX = 10;
 
-// Prototipos de funciones
+
 void leerMatriz(int mat[MAX][MAX], int filas, int cols, char nombre);
 void mostrarMatriz(int mat[MAX][MAX], int filas, int cols);
 void sumarMatrices(int a[MAX][MAX], int b[MAX][MAX], int r[MAX][MAX], int f, int c);
@@ -19,11 +19,11 @@ int main() {
 
     cout << "--- Sistema de Operaciones con Matrices ---" << endl;
 
-    // Ingreso de dimensiones
+    
     cout << "Dimensiones Matriz A (filas columnas): "; cin >> f1 >> c1;
     cout << "Dimensiones Matriz B (filas columnas): "; cin >> f2 >> c2;
 
-    // Validación de límites
+   
     if (f1 > MAX || c1 > MAX || f2 > MAX || c2 > MAX) {
         cout << "Error: El tamaño máximo permitido es " << MAX << endl;
         return 1;
@@ -32,7 +32,7 @@ int main() {
     leerMatriz(matA, f1, c1, 'A');
     leerMatriz(matB, f2, c2, 'B');
 
-    // --- Operación: Suma ---
+    
     cout << "\n1. SUMA (A + B):" << endl;
     if (f1 == f2 && c1 == c2) {
         sumarMatrices(matA, matB, resultado, f1, c1);
@@ -41,7 +41,7 @@ int main() {
         cout << "Incompatible: Las dimensiones deben ser iguales." << endl;
     }
 
-    // --- Operación: Multiplicación ---
+    
     cout << "\n2. MULTIPLICACION (A * B):" << endl;
     if (c1 == f2) {
         multiplicarMatrices(matA, matB, resultado, f1, c1, c2);
@@ -50,7 +50,7 @@ int main() {
         cout << "Incompatible: Columnas de A deben coincidir con Filas de B." << endl;
     }
 
-    // --- Operación: Transpuesta ---
+    
     cout << "\n3. TRANSPUESTA DE A:" << endl;
     transponerMatriz(matA, resultado, f1, c1);
     mostrarMatriz(resultado, c1, f1);
@@ -58,7 +58,7 @@ int main() {
     return 0;
 }
 
-// --- Implementación de Funciones ---
+
 
 void leerMatriz(int mat[MAX][MAX], int filas, int cols, char nombre) {
     cout << "Ingrese datos de Matriz " << nombre << ":" << endl;
