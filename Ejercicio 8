@@ -1,0 +1,52 @@
+#include <iostream>
+#include <string>
+#include <exception>
+
+using namespace std;
+
+class ErrorNumeroNegativo : public exception {
+public:
+    const char* what() const throw() {
+        return "Error: No se permiten numeros negativos en este sistema.";
+    }
+};
+
+int main() {
+    string entrada;
+    int numero;
+
+    cout << "Ingrese un numero entero positivo: ";
+    cin >> entrada;
+
+    try {
+        size_t pos;
+        try {
+            numero = stoi(entrada, &pos);
+            
+            if (pos < entrada.length()) {
+                throw runtime_error("Formato no valido");
+            }
+        } 
+        catch (const invalid_argument& e) {
+            throw runtime_error("La entrada no es un numero valido.");
+        } 
+        catch (const out_of_range& e) {
+            throw runtime_error("El numero es demasiado grande.");
+        }
+
+        if (numero < 0) {
+            throw ErrorNumeroNegativo();
+        }
+
+        cout << "Numero procesado correctamente: " << numero << endl;
+
+    } 
+    catch (const ErrorNumeroNegativo& e) {
+        cout << e.what() << endl;
+    } 
+    catch (const exception& e) {
+        cout << "Excepcion capturada: " << e.what() << endl;
+    }
+
+    return 0;
+}
