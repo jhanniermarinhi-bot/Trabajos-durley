@@ -1,0 +1,106 @@
+#include <iostream>
+#include <fstream> 
+#include <string>
+
+using namespace std;
+
+struct Estudiante {
+    string nombre;
+    string codigo;
+    float nota;
+};
+
+int main() {
+    int opcion;
+    
+    do {
+        cout << "\n--- SISTEMA DE ARCHIVOS (ESTUDIANTES) ---" << endl;
+        cout << "1. Registrar estudiante" << endl;
+        cout << "2. Listar todos" << endl;
+        cout << "3. Buscar por codigo" << endl;
+        cout << "4. Calcular promedio general" << endl;
+        cout << "5. Salir" << endl;
+        cout << "Opcion: ";
+        cin >> opcion;
+
+        if (opcion == 1) {
+           
+            ofstream archivoEscritura("estudiantes.txt", ios::app); 
+
+            if (!archivoEscritura) {
+                cout << "Error al abrir el archivo para escribir." << endl;
+            } else {
+                Estudiante e;
+                cout << "Nombre (usa guion bajo para espacios, ej: Juan_Perez): ";
+                cin >> e.nombre; 
+                cout << "Codigo: ";
+                cin >> e.codigo;
+                cout << "Nota Final: ";
+                cin >> e.nota;
+
+                
+                archivoEscritura << e.nombre << " " << e.codigo << " " << e.nota << endl;
+                archivoEscritura.close();
+                cout << "Estudiante guardado con éxito" << endl;
+            }
+        }
+        else if (opcion == 2) {
+            ifstream archivoLectura("estudiantes.txt");
+            string nom, cod;
+            float n;
+
+            if (!archivoLectura) {
+                cout << "No hay archivo de datos todavía." << endl;
+            } else {
+                cout << "\n--- LISTA DE ESTUDIANTES ---" << endl;
+                
+                while (archivoLectura >> nom >> cod >> n) {
+                    cout << "Nombre: " << nom << " | Codigo: " << cod << " | Nota: " << n << endl;
+                }
+                archivoLectura.close();
+            }
+        }
+        else if (opcion == 3) {
+            ifstream archivoLectura("estudiantes.txt");
+            string buscarCod, nom, cod;
+            float n;
+            bool encontrado = false;
+
+            cout << "Ingrese el codigo a buscar: ";
+            cin >> buscarCod;
+
+            if (archivoLectura.is_open()) {
+                while (archivoLectura >> nom >> cod >> n) {
+                    if (cod == buscarCod) {
+                        cout << "Encontrado Estudiante: " << nom << " | Nota: " << n << endl;
+                        encontrado = true;
+                    }
+                }
+                if (!encontrado) cout << "No se encontro el codigo: " << buscarCod << endl;
+                archivoLectura.close();
+            }
+        }
+        else if (opcion == 4) {
+            ifstream archivoLectura("estudiantes.txt");
+            string nom, cod;
+            float n, suma = 0;
+            int total = 0;
+
+            if (archivoLectura.is_open()) {
+                while (archivoLectura >> nom >> cod >> n) {
+                    suma += n;
+                    total++;
+                }
+                if (total > 0) {
+                    cout << "Promedio de " << total << " alumnos: " << (suma / total) << endl;
+                } else {
+                    cout << "Archivo vacio." << endl;
+                }
+                archivoLectura.close();
+            }
+        }
+
+    } while (opcion != 5);
+
+    return 0;
+}
