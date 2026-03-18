@@ -1,0 +1,112 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+class Cuenta {
+private:
+    string titular;
+    string numeroCuenta;
+    double saldo;
+    vector<string> historial;
+
+public:
+    Cuenta(string t, string n, double s) {
+        titular = t;
+        numeroCuenta = n;
+        if (s >= 0) {
+            saldo = s;
+            historial.push_back("Apertura de cuenta con: $" + to_string(s));
+        } else {
+            saldo = 0;
+            historial.push_back("Apertura de cuenta con: $0 (Saldo inicial invalido)");
+        }
+    }
+
+    bool depositar(double monto) {
+        if (monto > 0) {
+            saldo += monto;
+            historial.push_back("Deposito: +$" + to_string(monto));
+            return true;
+        }
+        return false;
+    }
+
+    bool retirar(double monto) {
+        if (monto > 0 && monto <= saldo) {
+            saldo -= monto;
+            historial.push_back("Retiro: -$" + to_string(monto));
+            return true;
+        }
+        return false;
+    }
+
+    string getNumero() const { return numeroCuenta; }
+    double getSaldo() const { return saldo; }
+
+    void mostrarInfo() const {
+        cout << "------------------------------" << endl;
+        cout << "Titular: " << titular << endl;
+        cout << "Nro Cuenta: " << numeroCuenta << endl;
+        cout << "Saldo actual: $" << saldo << endl;
+        cout << "Historial de movimientos:" << endl;
+        for (const string& mov : historial) {
+            cout << "  - " << mov << endl;
+        }
+    }
+};
+
+class Banco {
+private:
+    vector<Cuenta> cuentas;
+
+public:
+    void agregarCuenta(string t, string n, double s) {
+        cuentas.push_back(Cuenta(t, n, s));
+        cout << "Cuenta creada con exito." << endl;
+    }
+
+    Cuenta* buscarCuenta(string n) {
+        for (size_t i = 0; i < cuentas.size(); i++) {
+            if (cuentas[i].getNumero() == n) {
+                return &cuentas[i];
+            }
+        }
+        return nullptr;
+    }
+
+    void realizarTransferencia(string origen, string destino, double monto) {
+        Cuenta* cOrigen = buscarCuenta(origen);
+        Cuenta* cDestino = buscarCuenta(destino);
+
+        if (cOrigen && cDestino) {
+            if (cOrigen->retirar(monto)) {
+                cDestino->depositar(monto);
+                cout << "Transferencia exitosa de $" << monto << endl;
+            } else {
+                cout << "Error: Saldo insuficiente en cuenta origen." << endl;
+            }
+        } else {
+            cout << "Error: Una o ambas cuentas no existen." << endl;
+        }
+    }
+
+    void mostrarTodasLasCuentas() {
+        for (const auto& c : cuentas) {
+            c.mostrarInfo();
+        }
+    }
+};
+
+int main() {
+    Banco miBanco;
+
+    miBanco.agregarCuenta("Juan Perez", "1001", 500.0);
+    miBanco.agregarCuenta("Maria Lopez", "1002", 300.0);
+
+    cout << "\n--- Operaciones ---" << endl;
+    Cuenta* c1 = miBanco.buscarCuenta("1001");
+    if (c1) c1->depositar(200.0);
+
+    miBanco.realizarTransferencia("1001", "1002", 150.0
