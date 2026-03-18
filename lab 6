@@ -1,0 +1,164 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+const int MAX = 100;
+
+struct Producto {
+    string id;
+    string nombre;
+    float precio;
+    int cantidad;
+};
+
+
+bool existeID(string idBuscar) {
+    ifstream archivo("inventario.txt");
+    string id, nom; float pre; int cant;
+    while (archivo >> id >> nom >> pre >> cant) {
+        if (id == idBuscar) {
+            archivo.close();
+            return true;
+        }
+    }
+    archivo.close();
+    return false;
+}
+
+// 1. Agregar Producto
+void agregarProducto() {
+    ofstream archivo("inventario.txt", ios::app);
+    Producto p;
+
+    cout << "ID del producto: ";
+    cin >> p.id;
+
+    if (existeID(p.id)) {
+        cout << "Error: Ese ID ya existe en el sistema.\n";
+        archivo.close();
+        return;
+    }
+
+    cout << "Nombre (sin espacios): ";
+    cin >> p.nombre;
+    cout << "Precio: ";
+    cin >> p.precio;
+    cout << "Cantidad: ";
+    cin >> p.cantidad;
+
+    archivo << p.id << " " << p.nombre << " " << p.precio << " " << p.cantidad << endl;
+    archivo.close();
+    cout << "Producto registrado con éxito.\n";
+}
+
+// 2. Listar Productos
+void listarProductos() {
+    ifstream archivo("inventario.txt");
+    if (!archivo) {
+        cout << "El archivo no existe o está vacío.\n";
+        return;
+    }
+
+    string id, nom; float pre; int cant;
+    cout << "\nID\tNOMBRE\tPRECIO\tCANT\n";
+    cout << "----------------------------------\n";
+    while (archivo >> id >> nom >> pre >> cant) {
+        cout << id << "\t" << nom << "\t" << pre << "\t" << cant << endl;
+    }
+    archivo.close();
+}
+
+// 3. Buscar por ID
+void buscarProducto() {
+    ifstream archivo("inventario.txt");
+    string idBuscar, id, nom; float pre; int cant;
+    bool encontrado = false;
+
+    cout << "Ingrese el ID a buscar: ";
+    cin >> idBuscar;
+
+    while (archivo >> id >> nom >> pre >> cant) {
+        if (id == idBuscar) {
+            cout << "Encontrado: " << nom << " | Stock: " << cant << " | Precio: $" << pre << endl;
+            encontrado = true;
+            break;
+        }
+    }
+    if (!encontrado) cout << "Producto no encontrado.\n";
+    archivo.close();
+}
+
+void actualizarCantidad() {
+    Producto temporal[MAX];
+    int n = 0;
+    string idModificar;
+    bool encontrado = false;
+
+    ifstream archivoLectura("inventario.txt");
+    while (archivoLectura >> temporal[n].id >> temporal[n].nombre >> temporal[n].precio >> temporal[n].cantidad) {
+        n++;
+    }
+    archivoLectura.close();
+
+    cout << "ID del producto a actualizar stock: ";
+    cin >> idModificar;
+
+    // Paso B: Buscar y modificar en el arreglo
+    for (int i = 0; i < n; i++) {
+        if (temporal[i].id == idModificar) {
+            cout << "Cantidad actual: " << temporal[i].cantidad << endl;
+            cout << "Nueva cantidad: ";
+            cin >> temporal[i].cantidad;
+            encontrado = true;
+            break;
+        }
+    }
+
+    if (encontrado) {
+        ofstream archivoEscritura("inventario.txt"); // Sin ios::app para borrar y reescribir
+        for (int i = 0; i < n; i++) {
+            archivoEscritura << temporal[i].id << " " << temporal[i].nombre << " " 
+                             << temporal[i].precio << " " << temporal[i].cantidad << endl;
+        }
+        archivoEscritura.close();
+        cout << "Stock actualizado.\n";
+    } else {
+        cout << "No se encontró el ID.\n";
+    }
+}
+
+// 5. Valor Total
+void calcularTotal() {
+    ifstream archivo("inventario.txt");
+    string id, nom; float pre, total = 0; int cant;
+    while (archivo >> id >> nom >> pre >> cant) {
+        total += (pre * cant);
+    }
+    cout << "Valor total del inventario: $" << total << endl;
+    archivo.close();
+}
+
+int main() {
+    int opcion;
+    do {
+        cout << "\n--- SISTEMA DE INVENTARIO (ARCHIVOS) ---\n";
+        cout << "1. Agregar Producto\n2. Listar Inventario\n3. Buscar Producto\n";
+        cout << "4. Actualizar Cantidad\n5. Calcular Valor Total\n6. Salir\n";
+        cout << "Opcion: ";
+        cin >> opcion;
+
+        switch (opcion) {
+            case 1: agregarProducto(); break;
+            case 2: listarProductos(); break;
+            case 3: buscarProducto(); break;
+            case 4: actualizarCantidad(); break;
+            case 5: calcularTotal(); break;
+            case 6: cout << "Saliendo...\n"; break;
+            default: cout << "Invalido.\n";
+        }
+    } while (opcion != 6);
+
+    return 0;
+}
