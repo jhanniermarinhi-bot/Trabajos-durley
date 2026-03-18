@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+    string nombreCompleto;
+    
+    cout << "Ingrese su nombre completo: ";
+    getline(cin, nombreCompleto);
+
+    int totalCaracteres = nombreCompleto.length();
+
+    string nombreMayus = nombreCompleto;
+    transform(nombreMayus.begin(), nombreMayus.end(), nombreMayus.begin(), ::toupper);
+
+    time_t ahora = time(0);
+    tm *lctm = localtime(&ahora);
+    
+    int anioActual = 1900 + lctm->tm_year;
+    int mesActual = 1 + lctm->tm_mon;
+    int diaActual = lctm->tm_mday;
+
+    string usuario = nombreCompleto.substr(0, 3) + to_string(anioActual);
+
+    cout << "\n--- Resultados ---" << endl;
+    cout << "Nombre: " << nombreMayus << endl;
+    cout << "Caracteres: " << totalCaracteres << endl;
+    cout << "Fecha: " << diaActual << "/" << mesActual << "/" << anioActual << endl;
+    cout << "Usuario: " << usuario << endl;
+
+    return 0;
+}
