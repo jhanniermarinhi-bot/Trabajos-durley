@@ -1,0 +1,103 @@
+import java.util.Scanner;
+
+public class Miprograma {
+    public static void main(String[]args) {
+        System.out.println("Hola, Detective!");
+        
+        Scanner teclado = new Scanner(System.in );
+        System.out.print("¿Cual es tu nombre?" );
+        String nombre = teclado.nextLine();
+
+        System.out.println("Bienvenido," + nombre); 
+    }
+}
+
+import java.util.Scanner;
+
+public class Main {
+public static void main(String[] args) {
+Scanner scanner = new Scanner(System.in);
+
+System.out.print("Ingrese su edad: ");
+int edad = scanner.nextInt();
+
+
+System.out.println("Tu edad es: " + edad);
+
+scanner.close();
+}
+}
+ 
+if (edad < 12) {
+System.out.println(nombre + ", eres muy joven para ser detective");
+} else if (edad >= 12 && edad <= 17) {
+System.out.println(nombre + ", puedes ser detective junior");
+} else if (edad >= 18 && edad <= 59) {
+System.out.println("¡Bienvenido al equipo de detectives, " + nombre + "!");
+} else {
+System.out.println(nombre + ", eres un detective senior con experiencia");
+}
+
+
+
+Segunda declaración 
+
+import java.util.Scanner;
+public class DetectiveNivel {
+    public static void main(String[] args) {
+        scanner sc = new scanner(System.in);
+
+        System.out.print("¿Cuantas pistas encontraste?");
+        int pistas = sc.nextInt();
+
+        if (pistas >= 5){
+            System.out.println("!Eres un detective EXPERTO¡");
+            System.out.println("Puedes resolver el caso.");
+        } else if (pistas >= 3){
+            System.out.println("Buen trabajo, detective.");
+            System.out.println("Necesitas una pista mas.");
+        } else if (pistas >= 1) {
+            System.out.println("Vas por buen camino...");
+            System.out.println("¡Sigue investigando!");
+        } else {
+            System.out.println("No has encontrado nada!");
+            System.out.println("Revisa la escena del crimen");
+        }
+    }
+}
+
+public class MenuDetective {
+    public static void main (string[]args){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("=== DESPACHO HOLMES===");
+        System.out.println("1, Revisar Pistas");
+        System.out.println("2, Interrogar sospechoso");
+        System.out.println("3, Revisar expediente ");
+        System.out.println("4, Resolver caso");
+        System.out.println("Elige una opción:");
+
+        int opcion = sc.nextInt();
+
+        switch (opcion){
+            case 1;
+            System.out.println("Encontraste una huella");
+            break;
+            case 2;
+            System.out.println("El sospechoso está nervioso");
+            break;
+            case 3;
+            System.out.println("Expediente: caso HIDDEN");
+            break;
+            case 4;
+            System.out.println("¿Quién es el culpable?");
+            break;
+            default;
+            System.out.println("Opción no valida");
+            break;
+        }
+
+
+    }
+}
+
