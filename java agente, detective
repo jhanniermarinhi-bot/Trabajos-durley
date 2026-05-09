@@ -1,0 +1,313 @@
+import java.util.Scanner;
+
+class Agente {
+    protected int id;
+    protected String nombre;
+    protected String agencia;
+    protected String rango;
+    protected String experiencia;
+    protected int edad;
+
+    public Agente(int id, String nombre, String agencia, String rango, String experiencia, int edad) {
+        this.id = id;
+        this.nombre = nombre;
+        this.agencia = agencia;
+        this.rango = rango;
+        this.experiencia = experiencia;
+        this.edad = edad;
+    }
+
+    public void mostrarInfo() {
+        System.out.println("ID: " + id);
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Agencia: " + agencia);
+        System.out.println("Rango: " + rango);
+        System.out.println("Experiencia: " + experiencia);
+        System.out.println("Edad: " + edad);
+    }
+}
+
+class Detective extends Agente {
+    private String especialidad;
+    private String armamento;
+
+    public Detective(int id, String nombre, String agencia, String rango,
+                      String experiencia, int edad,
+                      String especialidad, String armamento) {
+        super(id, nombre, agencia, rango, experiencia, edad);
+        this.especialidad = especialidad;
+        this.armamento = armamento;
+    }
+
+    @Override
+    public void mostrarInfo() {
+        super.mostrarInfo();
+        System.out.println("Especialidad: " + especialidad);
+        System.out.println("Armamento: " + armamento);
+    }
+}
+
+class Policia extends Agente {
+    private String especialidad;
+    private String patrulla;
+    private String armamento;
+    private String turno;
+
+    public Policia(int id, String nombre, String agencia, String rango,
+                   String experiencia, int edad,
+                   String especialidad, String patrulla,
+                   String armamento, String turno) {
+        super(id, nombre, agencia, rango, experiencia, edad);
+        this.especialidad = especialidad;
+        this.patrulla = patrulla;
+        this.armamento = armamento;
+        this.turno = turno;
+    }
+
+    @Override
+    public void mostrarInfo() {
+        super.mostrarInfo();
+        System.out.println("Especialidad: " + especialidad);
+        System.out.println("Patrulla: " + patrulla);
+        System.out.println("Armamento: " + armamento);
+        System.out.println("Turno: " + turno);
+    }
+}
+
+class Forense extends Agente {
+    private String especialidad;
+    private String armamento;
+    private String areaEspecializacion;
+
+    public Forense(int id, String nombre, String agencia, String rango,
+                   String experiencia, int edad,
+                   String especialidad, String armamento, String areaEspecializacion) {
+        super(id, nombre, agencia, rango, experiencia, edad);
+        this.especialidad = especialidad;
+        this.armamento = armamento;
+        this.areaEspecializacion = areaEspecializacion;
+    }
+
+    @Override
+    public void mostrarInfo() {
+        super.mostrarInfo();
+        System.out.println("Especialidad: " + especialidad);
+        System.out.println("Armamento: " + armamento);
+        System.out.println("Área de Especialización: " + areaEspecializacion);
+    }
+}
+
+class Testigo {
+    private int id;
+    private String nombre;
+    private int edad;
+    private String descripcion;
+
+    public Testigo(int id, String nombre, int edad, String descripcion) {
+        this.id = id;
+        this.nombre = nombre;
+        this.edad = edad;
+        this.descripcion = descripcion;
+    }
+
+    public void mostrarInfo() {
+        System.out.println("ID: " + id);
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Edad: " + edad);
+        System.out.println("Descripción: " + descripcion);
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        
+        System.out.println(" AGREGAR AGENTE ");
+
+        System.out.print("ID: ");
+        int idA = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Nombre: ");
+        String nombreA = sc.nextLine();
+
+        System.out.print("Agencia: ");
+        String agenciaA = sc.nextLine();
+
+        System.out.print("Rango: ");
+        String rangoA = sc.nextLine();
+
+        System.out.print("Experiencia: ");
+        String experienciaA = sc.nextLine();
+
+        System.out.print("Edad: ");
+        int edadA = sc.nextInt();
+        sc.nextLine();
+
+        Agente agente = new Agente(idA, nombreA, agenciaA, rangoA, experienciaA, edadA);
+
+        
+        System.out.println("\n AGREGAR DETECTIVE ");
+
+        System.out.print("ID: ");
+        int idD = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Nombre: ");
+        String nombreD = sc.nextLine();
+
+        System.out.print("Agencia: ");
+        String agenciaD = sc.nextLine();
+
+        System.out.print("Rango: ");
+        String rangoD = sc.nextLine();
+
+        System.out.print("Experiencia: ");
+        String experienciaD = sc.nextLine();
+
+        System.out.print("Edad: ");
+        int edadD = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Especialidad: ");
+        String especialidadD = sc.nextLine();
+
+        System.out.print("Armamento: ");
+        String armamentoD = sc.nextLine();
+
+        Detective detective = new Detective(
+                idD, nombreD, agenciaD, rangoD,
+                experienciaD, edadD,
+                especialidadD, armamentoD
+        );
+
+        
+        System.out.println("\n AGREGAR POLICÍA ");
+
+        System.out.print("ID: ");
+        int idP = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Nombre: ");
+        String nombreP = sc.nextLine();
+
+        System.out.print("Agencia: ");
+        String agenciaP = sc.nextLine();
+
+        System.out.print("Rango: ");
+        String rangoP = sc.nextLine();
+
+        System.out.print("Experiencia: ");
+        String experienciaP = sc.nextLine();
+
+        System.out.print("Edad: ");
+        int edadP = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Especialidad: ");
+        String especialidadP = sc.nextLine();
+
+        System.out.print("Patrulla: ");
+        String patrullaP = sc.nextLine();
+
+        System.out.print("Armamento: ");
+        String armamentoP = sc.nextLine();
+
+        System.out.print("Turno: ");
+        String turnoP = sc.nextLine();
+
+        Policia policia = new Policia(
+                idP, nombreP, agenciaP, rangoP,
+                experienciaP, edadP,
+                especialidadP, patrullaP,
+                armamentoP, turnoP
+        );
+
+        // FORENSE
+        System.out.println("\n AGREGAR FORENSE ");
+
+        System.out.print("ID: ");
+        int idF = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Nombre: ");
+        String nombreF = sc.nextLine();
+
+        System.out.print("Agencia: ");
+        String agenciaF = sc.nextLine();
+
+        System.out.print("Rango: ");
+        String rangoF = sc.nextLine();
+
+        System.out.print("Experiencia: ");
+        String experienciaF = sc.nextLine();
+
+        System.out.print("Edad: ");
+        int edadF = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Especialidad: ");
+        String especialidadF = sc.nextLine();
+
+        System.out.print("Armamento: ");
+        String armamentoF = sc.nextLine();
+
+        System.out.print("Área de Especialización: ");
+        String areaF = sc.nextLine();
+
+        Forense forense = new Forense(
+                idF, nombreF, agenciaF, rangoF,
+                experienciaF, edadF,
+                especialidadF, armamentoF, areaF
+        );
+
+        
+        Testigo[] testigos = new Testigo[3];
+
+        for (int i = 0; i < 3; i++) {
+            System.out.println("\n AGREGAR TESTIGO " + (i + 1) + " ");
+
+            System.out.print("ID: ");
+            int idT = sc.nextInt();
+            sc.nextLine();
+
+            System.out.print("Nombre: ");
+            String nombreT = sc.nextLine();
+
+            System.out.print("Edad: ");
+            int edadT = sc.nextInt();
+            sc.nextLine();
+
+            System.out.print("Descripción: ");
+            String descripcionT = sc.nextLine();
+
+            testigos[i] = new Testigo(idT, nombreT, edadT, descripcionT);
+        }
+
+       
+        System.out.println("\n\n INFORMACIÓN REGISTRADA ");
+
+        System.out.println("\n AGENTE ");
+        agente.mostrarInfo();
+
+        System.out.println("\n DETECTIVE ");
+        detective.mostrarInfo();
+
+        System.out.println("\n POLICÍA ");
+        policia.mostrarInfo();
+
+        System.out.println("\n FORENSE ");
+        forense.mostrarInfo();
+
+        System.out.println("\n TESTIGOS ");
+        for (int i = 0; i < testigos.length; i++) {
+            System.out.println("\nTestigo " + (i + 1) + ":");
+            testigos[i].mostrarInfo();
+        }
+
+        sc.close();
+    }
+}
